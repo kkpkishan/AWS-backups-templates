@@ -18,7 +18,7 @@
  </ol>
             <h6>Public S3 URL</h6>
             <ol>
-             <oi>https://electromech-cloudformation-templates.s3.ap-south-1.amazonaws.com/autoscaling-ec2.yml</li>
+             <oi>https://electromech-cloudformation-templates.s3.ap-south-1.amazonaws.com/aws-backups.yaml</li>
             </ol>
         </td>
         <td  nowrap width="200" valign="top">
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://console.aws.amazon.com/cloudformation/home?#/stacks/new?&templateURL=https://electromech-cloudformation-templates.s3.ap-south-1.amazonaws.com/autoscaling-ec2.yml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"></a>
+                        <a href="https://console.aws.amazon.com/cloudformation/home?#/stacks/new?&templateURL=https://electromech-cloudformation-templates.s3.ap-south-1.amazonaws.com/aws-backups.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"></a>
                     </td>
                 </tr>
             </table>
