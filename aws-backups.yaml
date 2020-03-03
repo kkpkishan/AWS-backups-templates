@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Backup Plan template by Kishan Khatrani"
+Resources:
+  BackupVaultBackups:
+    Type: "AWS::Backup::BackupVault"
+    Properties:
+      BackupVaultName: "BackupVaultBackups"
+
+  BackupPlanBackups:
+    Type: "AWS::Backup::BackupPlan"
+    Properties:
+      BackupPlan:
+        BackupPlanName: "BackupPlanBackups"
+        BackupPlanRule:
+          -
+            RuleName: "RuleForDailyBackups"
+            TargetBackupVault: !Ref BackupVaultBackups
+            ScheduleExpression: "cron(0 5 ? * * *)"
+            Lifecycle:
+              DeleteAfterDays: 7
+          -
+            RuleName: "RuleForWeeklyBackups"
+            TargetBackupVault: !Ref BackupVaultBackups
+            ScheduleExpression: "cron(0 5 ? * 1 *)"
+            Lifecycle:
+              DeleteAfterDays: 28
+          -
+            RuleName: "RuleForMonthlyBackups"
+            TargetBackupVault: !Ref BackupVaultBackups
+            ScheduleExpression: "cron(0 5 1 * ? *)"
+            Lifecycle:
+              DeleteAfterDays: 90
+    DependsOn: BackupVaultBackups
+
+  TagBasedBackupSelection:
+    Type: "AWS::Backup::BackupSelection"
+    Properties:
+      BackupSelection:
+        SelectionName: "TagBasedBackupSelection"
+        IamRoleArn: !Sub "arn:aws:iam::${AWS::AccountId}:role/service-role/AWSBackupDefaultServiceRole"
+        ListOfTags:
+         -
+           ConditionType: "STRINGEQUALS"
+           ConditionKey: "backup"
+           ConditionValue: "true"
+      BackupPlanId: !Ref BackupPlanBackups
+    DependsOn: BackupPlanBackups
