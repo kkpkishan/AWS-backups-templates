@@ -1,7 +1,7 @@
 # AWS Backups  CloudFormation Templates
 <table width="100%">
     <tr>
-        <th align="left" colspan="2"><h4><a href="https://github.com/kkpkishan/aws-autoscaling-cloudformation-templates/blob/master/autoscaling-ec2.yml">AWS Backups</a></h4></th>
+        <th align="left" colspan="2"><h4><a href="https://github.com/kkpkishan/aws-backups-cloudformation-templates/blob/master/aws-backups.yaml">AWS Backups</a></h4></th>
     </tr>
     <tr>
         <td width="100%" valign="top">
