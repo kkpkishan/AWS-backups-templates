@@ -5,7 +5,8 @@
     </tr>
     <tr>
         <td width="100%" valign="top">
-        <p>you can provision and manage your AWS resources in a safe, repeatable manner using templates that you create. You can use AWS CloudFormation templates to manage your backup plans, backup resource selections, and backup vaults.
+        <p>you can provision and manage your AWS resources in a safe, repeatable manner using templates that you create. 
+            You can use AWS CloudFormation templates to manage your backup plans, backup resource selections, and backup vaults.
         </p>>
             <h6>Create Details</h6>
             <ol>
