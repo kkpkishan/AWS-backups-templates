@@ -7,7 +7,7 @@
         <td width="100%" valign="top">
         <p>you can provision and manage your AWS resources in a safe, repeatable manner using templates that you create. 
             You can use AWS CloudFormation templates to manage your backup plans, backup resource selections, and backup vaults.
-        </p>>
+        </p>
             <h6>Create Details</h6>
             <ol>
                <li>AWS BackupVault</li>
@@ -15,7 +15,7 @@
                <li>AWS BackupPlanRule</li>
                <li>AWS Backup ServiceRole</li>
 
-            </ol>
+ </ol>
             <h6>Public S3 URL</h6>
             <ol>
              <oi>https://electromech-cloudformation-templates.s3.ap-south-1.amazonaws.com/autoscaling-ec2.yml</li>
@@ -34,5 +34,4 @@
             </table>
         </td>
     </tr>
-</table>   
-
+</table>
