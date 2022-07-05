@@ -1,5 +1,35 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Backup Plan template by Kishan Khatrani"
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+
+  RuleForDailyBackupsRetention:
+    Description: Please enter DailyBackups for this Backup Plan
+    Type: String
+    Default: 7
+
+  RuleForWeeklyBackupsRetention:
+    Description: Please enter WeeklyBackups for this Backup Plan
+    Type: String
+    Default: 28
+    
+  RuleForMonthlyBackupsRetention:
+    Description: Please enter MonthlyBackups for this Backup Plan
+    Type: String
+    Default: 28
+    
+  ResourceKey:
+    Description: Please enter ResourceKey for this Backup Plan
+    Type: String
+    Default: backup
+    
+  ResourceKeyValue:
+    Description: Please enter ResourceKeyValue for this Backup Plan
+    Type: String
+    Default: true
+    
 Resources:
   BackupVaultBackups:
     Type: "AWS::Backup::BackupVault"
@@ -17,19 +47,19 @@ Resources:
             TargetBackupVault: !Ref BackupVaultBackups
             ScheduleExpression: "cron(0 5 ? * * *)"
             Lifecycle:
-              DeleteAfterDays: 7
+              DeleteAfterDays: !Ref RuleForDailyBackupsRetention
           -
             RuleName: "RuleForWeeklyBackups"
             TargetBackupVault: !Ref BackupVaultBackups
             ScheduleExpression: "cron(0 5 ? * 1 *)"
             Lifecycle:
-              DeleteAfterDays: 28
+              DeleteAfterDays: !Ref RuleForWeeklyBackupsRetention
           -
             RuleName: "RuleForMonthlyBackups"
             TargetBackupVault: !Ref BackupVaultBackups
             ScheduleExpression: "cron(0 5 1 * ? *)"
             Lifecycle:
-              DeleteAfterDays: 90
+              DeleteAfterDays: !Ref RuleForMonthlyBackupsRetention
     DependsOn: BackupVaultBackups
 
   TagBasedBackupSelection:
@@ -41,7 +71,7 @@ Resources:
         ListOfTags:
          -
            ConditionType: "STRINGEQUALS"
-           ConditionKey: "backup"
-           ConditionValue: "true"
+           ConditionKey: !Ref ResourceKey
+           ConditionValue: !Ref ResourceKeyValue
       BackupPlanId: !Ref BackupPlanBackups
     DependsOn: BackupPlanBackups
